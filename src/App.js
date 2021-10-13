@@ -123,7 +123,7 @@ export default class App extends Component {
           {hits.length === 0 && <h1>по запросу { query} ничего не найдено</h1>}
           {showModal && (
             <Modal onClose={this.toggleModal}>
-              <img src={largeImageURL} alt={tags} />
+              <img className={s.img_Modal} src={largeImageURL} alt={tags} />
             </Modal>
           )}
         </div>
