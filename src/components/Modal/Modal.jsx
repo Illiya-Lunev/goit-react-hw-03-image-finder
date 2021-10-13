@@ -4,6 +4,11 @@ import s from './modal.module.css';
 
 const modalRoot = document.querySelector('#modal-root');
 export default class Modal extends Component {
+
+  state = {
+    searchImg: '',
+  }
+
   componentDidMount() {
         window.addEventListener('keydown', this.handleKeyDown);
      
@@ -32,10 +37,10 @@ if(e.currentTarget === e.target){
   }
   render() {
     return createPortal(
-      <div className={s.Modal__backdrop} onClick={this.handleBackdropClick}>
-        <div className={s.Modal__content}>{this.props.children}</div>
-      </div>,
-      modalRoot,
+      <div className={s.Overlay} onClick={this.handleBackdropClick}>
+      <div className={s.Modal}>{this.props.children}</div>
+    </div>,
+    modalRoot,
     );
   }
 }

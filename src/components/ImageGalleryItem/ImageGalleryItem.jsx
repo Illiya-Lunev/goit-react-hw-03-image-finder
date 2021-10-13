@@ -1,23 +1,27 @@
-import s from "./ImageGalleryItem.module.css";
-import PropTypes from "prop-types";
+import s from './imageGalleryItem.module.css'
 
+const ImageGalleryItem = ({
+  url,
+  tags,
+  toggleModal,
+  handleSetLargeImageURL,
+  largeImageURL,
+}) => {
+  const handleClick = e => {
+    toggleModal();
+    handleSetLargeImageURL({ largeImageURL, tags });
+  };
 
-function ImageGalleryItem({ images,handleOpenModal }){
-    return images.map(({ id, tags, webformatURL, largeImageURL }) => (
-        <li
-          className={s.item}
-           key={id}
-          onClick={() => handleOpenModal(id, tags, largeImageURL)}
-        >
-          <img src={webformatURL} alt={tags} className={s.img} />
-        </li>
-      ));
-    }
-
+  return (
+    <li className={s.ImageGalleryItem}>
+      <img
+        src={url}
+        alt={tags}
+        className={s.ImageGalleryItem_image}
+        onClick={handleClick}
+      />
+    </li>
+  );
+};
 
 export default ImageGalleryItem;
-
-ImageGalleryItem.propTypes = {
-    images: PropTypes.arrayOf(PropTypes.shape),
-    onClickHandler: PropTypes.func,
-  };
