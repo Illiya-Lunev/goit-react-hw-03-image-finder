@@ -120,7 +120,7 @@ export default class App extends Component {
           {hits.length  !== 0 && (
             <Button onClick={this.handleLoadMore} />
           )}
-          {hits.length === 0 && <h1>по запросу { query} ничего не найдено</h1>}
+          {hits.length === 0 && <h1 className={s.title}>No results { query} were found for your search....😭</h1>}
           {showModal && (
             <Modal onClose={this.toggleModal}>
               <img className={s.img_Modal} src={largeImageURL} alt={tags} />
