@@ -4,16 +4,15 @@ import s from './loader.module.css';
 
 function Loader() {
   return (
-    
+    <div className={s.loader_container}>
       <L
-      type="ThreeDots"
-      color="#303f9f"
-      height={30}
-      width={60}
-      timeout={3000}
-      style={{ margin: "0 auto" }}
+        type="Puff"
+        color="#00BFFF"
+        height={200}
+        width={200}
+        timeout={3000}
       />
-  
+    </div>
   );
 }
 
