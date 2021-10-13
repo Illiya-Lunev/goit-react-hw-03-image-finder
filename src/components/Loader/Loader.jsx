@@ -1,11 +1,11 @@
-import Loader from 'react-loader-spinner';
+import L from 'react-loader-spinner';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import s from './loader.module.css';
 
-function Loading() {
+function Loader() {
   return (
     <div className={s.loader_container}>
-      <Loader
+      <L
         type="Puff"
         color="#00BFFF"
         height={100}
@@ -16,4 +16,4 @@ function Loading() {
   );
 }
 
-export default Loading;
+export default Loader;

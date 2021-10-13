@@ -6,12 +6,12 @@ import SearchBar from './components/Searchbar/SearchBar';
 import s from './components/Searchbar/searchBar.module.css';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import { fetchImages } from './components/service/api';
-import Loading from './components/Loader/Loader.jsx';
+import Loader from './components/Loader/Loader.jsx';
 import Button from './components/Button/Button.jsx';
 
 export default class App extends Component {
   state = {
-    searchImg: '',
+    query: '',
     hits: [],
     page: 1,
     error: null,
@@ -23,16 +23,16 @@ export default class App extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    const prevQuery = prevState.searchImg;
-    const nextQuery = this.state.searchImg;
-
+    const prevQuery = prevState.query;
+    const nextQuery = this.state.query;
     const page = this.state.page;
-    
+
     if (nextQuery !== prevQuery) {
       this.setState({ status: 'pending' });
       this.setState({ page: 1, hits: [] });
       this.getImages({ nextQuery: nextQuery, page: 1 });
     }
+
     if (page !== prevState.page && page !== 1) {
       this.setState({ status: 'pending' });
       this.getImages({ nextQuery: nextQuery, page: page });
@@ -66,8 +66,8 @@ export default class App extends Component {
     }));
   };
 
-  handleSearchForm = searchImg => {
-    this.setState({ searchImg });
+  handleSearchForm =  query => {
+    this.setState({  query });
   };
 
   handleSetLargeImageURL = ({ largeImageURL, tags }) => {
@@ -82,7 +82,7 @@ export default class App extends Component {
       status,
       error,
       hits,
-      searchImg,
+      query,
       showModal,
       largeImageURL,
       totalHits,
@@ -102,8 +102,8 @@ export default class App extends Component {
     if (status === 'pending') {
       return (
         <div>
-          {<Loading />}
-          Loading.......
+       
+          <Loader />
         </div>
       );
     }
@@ -121,8 +121,15 @@ export default class App extends Component {
             toggleModal={this.toggleModal}
             handleSetLargeImageURL={this.handleSetLargeImageURL}
           />
-
-          {/* {showModal && <Modal onClose={this.toggleModal}></Modal>} */}
+          {hits.length  !== 0 && (
+            <Button onClick={this.handleLoadMore} />
+          )}
+          {hits.length === 0 && <h1>по запросу { query} ничего не найдено</h1>}
+          {showModal && (
+            <Modal onClose={this.toggleModal}>
+              <img src={largeImageURL} alt={tags} />
+            </Modal>
+          )}
         </div>
       );
     }

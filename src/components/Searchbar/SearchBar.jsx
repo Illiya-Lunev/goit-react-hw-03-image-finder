@@ -3,22 +3,20 @@ import { toast } from 'react-toastify';
 import s from './searchBar.module.css';
 
 export default class SearchBar extends Component {
-  state = {
-    searchImg: '',
-  };
+  state = { query: '' };
 
   handleNameChange = e => {
-    this.setState({ searchImg: e.currentTarget.value.toLowerCase() });
+    this.setState({ query: e.currentTarget.value.toLowerCase() });
     
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    if(this.state.searchImg.trim() ===''){
+    if(this.state.query.trim() ===''){
         return   toast.error('🔥Ups,Enter image name!🔥');
     }
-    this.props.onSubmit(this.state.searchImg)
-    this.setState({searchImg:''})
+    this.props.onSubmit(this.state.query)
+    this.setState({query:''})
   
   };
 
@@ -31,7 +29,7 @@ export default class SearchBar extends Component {
           </button>
 
           <input
-            value={this.state.searchImg}
+            value={this.state.query}
             onChange={this.handleNameChange}
             className={s.SearchForm_input}
             type="text"
