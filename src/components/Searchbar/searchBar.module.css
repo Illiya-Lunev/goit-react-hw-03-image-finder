@@ -26,6 +26,13 @@ html {
     height: auto;
   }
 
+  .App {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 16px;
+    padding-bottom: 24px;
+  }
+  
 
 .Searchbar {
     top: 0;

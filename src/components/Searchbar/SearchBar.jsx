@@ -15,8 +15,7 @@ export default class SearchBar extends Component {
   handleSubmit = e => {
     e.preventDefault();
     if(this.state.searchImg.trim() ===''){
-        toast.error('Error')
-        return;
+        return   toast.error('🔥Ups,Enter image name!🔥');
     }
     this.props.onSubmit(this.state.searchImg)
     this.setState({searchImg:''})
@@ -36,8 +35,8 @@ export default class SearchBar extends Component {
             onChange={this.handleNameChange}
             className={s.SearchForm_input}
             type="text"
-            // autocomplete="off"
-            // autofocus
+            autoComplete="off"
+            autoFocus
             placeholder="Search images and photos"
           />
         </form>
