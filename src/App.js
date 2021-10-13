@@ -42,22 +42,19 @@ export default class App extends Component {
   getImages = ({ nextQuery, page }) => {
     fetchImages({ nextQuery, page })
       .then(data => {
-        if (data.hits.length === 0) {
-          this.setState({ status: 'rejected' });
-        }
+     
         this.setState({ status: 'resolved', totalHits: data.totalHits });
 
         this.setState(prevState => ({
           hits: [...prevState.hits, ...data.hits],
         }));
-      })
-      .catch(error => this.setState({ error, status: 'rejected' }))
-      .finally(() => {
-        window.scrollTo({
+      }).then(() => {
+        return window.scrollTo({
           top: document.documentElement.scrollHeight,
           behavior: 'smooth',
         });
-      });
+      }).catch(error => this.setState({ error, status: 'rejected' }))
+      
   };
 
   handleLoadMore = e => {
@@ -85,7 +82,6 @@ export default class App extends Component {
       query,
       showModal,
       largeImageURL,
-      totalHits,
       tags,
     } = this.state;
 
