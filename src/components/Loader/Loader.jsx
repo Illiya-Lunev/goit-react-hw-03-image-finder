@@ -8,8 +8,8 @@ function Loader() {
       <L
         type="Puff"
         color="#00BFFF"
-        height={100}
-        width={100}
+        height={200}
+        width={200}
         timeout={3000}
       />
     </div>

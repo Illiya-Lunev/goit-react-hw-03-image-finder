@@ -7,7 +7,7 @@ import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 const ImageGallery = ({ hits, toggleModal, handleSetLargeImageURL }) => {
   return (
     <ul className={s.imageGallery}>
-      {hits.map(({ id, webformatURL, largeImageURL, tags }) => (
+      {hits.map(({ id, webformatURL, largeImageURL, tags}) => (
         <ImageGalleryItem
           key={id}
           url={webformatURL}
