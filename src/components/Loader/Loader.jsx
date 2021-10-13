@@ -6,7 +6,7 @@ function Loader() {
   return (
     <div className={s.loader_container}>
       <L
-        type="Puff"
+        type="ThreeDots"
         color="#00BFFF"
         height={200}
         width={200}
