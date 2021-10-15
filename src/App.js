@@ -57,7 +57,7 @@ export default class App extends Component {
       
   };
 
-  handleLoadMore = e => {
+  handleLoadMore = () => {
     this.setState(prevState => ({
       page: prevState.page + 1,
     }));
